@@ -1,5 +1,4 @@
 module Dither (
-    bayer2, bayer4, bayer8,
     dither
 )
 where
@@ -36,7 +35,7 @@ thresh bmat img x y =
         px = pixelAt img x y
         light = lightness px
     in
-        if bmat!!my!!mx <= light then (PixelRGBA8 255 255 255 $ alpha px) else (PixelRGBA8 0 0 0 $ alpha px)
+        if bmat!!my!!mx < light then (PixelRGBA8 255 255 255 $ alpha px) else (PixelRGBA8 0 0 0 $ alpha px)
 
 dither' :: (Floating a, Ord a) => [[a]] -> Image PixelRGBA8 -> Image PixelRGBA8
 dither' bmat (Image w h pxs) = generateImage (thresh bmat $ Image w h pxs) w h
