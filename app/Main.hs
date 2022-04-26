@@ -3,7 +3,7 @@ module Main where
 import Codec.Picture (DynamicImage, readImage, writePng)
 import System.Environment (getArgs)
 
-import Dither (dither)
+import Dither (dither, greyscale)
 
 doError :: String -> IO ()
 doError err = putStrLn err
