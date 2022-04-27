@@ -3,13 +3,13 @@ module Main where
 import Codec.Picture (DynamicImage, readImage, writePng)
 import System.Environment (getArgs)
 
-import Dither (dither, greyscale)
+import Dither (dither, greyscale, web, colour125)
 
 doError :: String -> IO ()
 doError err = putStrLn err
 
 doSuccess :: DynamicImage -> FilePath -> IO ()
-doSuccess img outp = writePng outp $ dither img
+doSuccess img outp = writePng outp $ web img
 
 tryDither :: FilePath -> FilePath -> IO ()
 tryDither path outp = do
